@@ -129,7 +129,7 @@ useGoogleOneTapLogin({
 });
 ```
 
-### Custom login button (implicit & authorization code flow)
+### Custom login button (implicit, authorization code & credential flow)
 
 #### Implicit flow
 
@@ -140,7 +140,9 @@ const login = useGoogleLogin({
   onSuccess: tokenResponse => console.log(tokenResponse),
 });
 
-<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
 ```
 
 #### Authorization code flow
@@ -155,7 +157,26 @@ const login = useGoogleLogin({
   flow: 'auth-code',
 });
 
-<MyCustomButton onClick={() => login()}>Sign in with Google 🚀</MyCustomButton>;
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
+```
+
+#### Credential flow
+
+This will return a JWT token in `tokenResponse.credential`.
+
+```jsx
+import { useGoogleLogin } from '@react-oauth/google';
+
+const login = useGoogleLogin({
+  onSuccess: credentialsResponse => console.log(tokenResponse),
+  flow: 'credential',
+});
+
+<MyCustomButton onClick={() => login()}>
+  Sign in with Google 🚀{' '}
+</MyCustomButton>;
 ```
 
 #### Checks if the user granted all the specified scope or scopes
